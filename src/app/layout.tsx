@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "../styles/globals.scss";
 import { montserrat, poppins } from "@/fonts";
+import StateContextProvider from "@/context/StateCtx";
 
 export const metadata: Metadata = {
   title: "Mr Grace",
@@ -14,9 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className} ${poppins.className}`}>
-        {children}
-      </body>
+      <StateContextProvider>
+        <body className={`${montserrat.className} ${poppins.className}`}>
+          {children}
+        </body>
+      </StateContextProvider>
     </html>
   );
 }
