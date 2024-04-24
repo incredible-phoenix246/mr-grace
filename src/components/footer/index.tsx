@@ -41,8 +41,8 @@ export const Footer = () => {
           ))}
         </div>
         <div className="w-[80%] bg-black-main h-0.5" />
-        <div className="flex items-center  gap-x-5 lg:gap-x-7 2xl:gap-x-10 w-full justify-center max-w-[50%] 2xl:max-w-[40%]">
-          <p className="text-sm font-semibold text-black-main">
+        <div className="flex items-center w-full justify-center max-w-[50%] 2xl:max-w-[40%]">
+          <p className="text-sm font-semibold text-black-main text-center">
             &copy; {currentYear} Mr Grace. All rights reserved.
           </p>
         </div>
