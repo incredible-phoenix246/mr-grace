@@ -3,3 +3,10 @@ export type NavbarLinkProps = {
   link: string;
   label: string;
 };
+
+export type SocialsProps = {
+  id?: number;
+  link: string;
+  label: string;
+  icon?: Icon;
+};
