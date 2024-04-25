@@ -21,7 +21,7 @@ const Hero = () => {
           : " opacity-0 translate-y-36"
       )}
     >
-      <div className=" max-w-7xl mx-auto py-12">
+      <div className="px-4 sm:px-8 xl:px-16 2xl:px-24 max-w-7xl mx-auto py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
             <div className="text-sm font-semibold uppercase tracking-wide text-white-main">
