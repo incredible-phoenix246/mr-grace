@@ -1,7 +1,7 @@
 import React from "react";
 import Hero from "@/modules/Home/Hero";
 import { Card } from "@/modules/Home/slider/card";
-import { GridPost } from "@/modules/Home/post";
+import { GridPost, PopularPost } from "@/modules/Home/post";
 
 const Home = () => {
   return (
@@ -9,6 +9,7 @@ const Home = () => {
       <Hero />
       <Card />
       <GridPost />
+      <PopularPost />
     </>
   );
 };

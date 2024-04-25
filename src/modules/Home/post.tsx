@@ -89,3 +89,37 @@ function IndexCard({ title, date, image, desc, id, cart }: PostProps) {
     </div>
   );
 }
+
+export function PopularPost() {
+  const PopularPostRef = React.useRef<HTMLDivElement>(null);
+  const isInView = useInView(PopularPostRef);
+
+  const popularPosts = Post.filter(
+    (post) => post.readcount && post.readcount > 15
+  );
+  return (
+    <section
+      ref={PopularPostRef}
+      className={cn(
+        "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12",
+        isInView
+          ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
+          : " opacity-0 translate-y-36"
+      )}
+    >
+      <div className="flex justify-between items-center mb-12">
+        <h1 className="text-3xl font-bold text-zinc-900 dark:text-white">
+          Popular Post
+        </h1>
+        <Button asChild variant="default" className="text-white-main">
+          <Link href="#">View All</Link>
+        </Button>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
+        {popularPosts.map((post) => (
+          <PostCard key={post.id} {...post} />
+        ))}
+      </div>
+    </section>
+  );
+}
