@@ -32,13 +32,19 @@ const Card = () => {
 
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="max-w-[920px] h-[300px] mx-auto bg-white rounded-br-lg rounded-t-lg shadow-md overflow-hidden absolute bottom-0 right-0 bg-white-main">
-            <div className="p-4 flex gap-x-3 items-center">
+            <div className="p-4 flex gap-x-3 items-center w-full h-fit">
               <div className="text-white text-xs uppercase font-bold text-black-main">
                 Development
               </div>
               <div className="text-white text-sm text-black-200">
                 16 March 2023
               </div>
+              <Button
+                variant="ghost"
+                className="px-4 hover:underline md:hidden rounded hover:text-white transition-colors text-xs"
+              >
+                Read More
+              </Button>
             </div>
             <div className="p-5">
               <h3 className="md:text-2xl text-sm font-bold mb-3 text-center">
