@@ -1,6 +1,4 @@
 import React, { Suspense } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { Header } from "@/components/navigations/Header";
 import { Footer } from "@/components/footer";
 import SkeletonNavbar from "@/components/Skeleton/SkeletonNavbar";
