@@ -21,7 +21,7 @@ const Hero = () => {
           : " opacity-0 translate-y-36"
       )}
     >
-      <div className="px-4 sm:px-8 xl:px-16 2xl:px-24 max-w-7xl mx-auto py-12">
+      <div className=" max-w-7xl mx-auto py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
             <div className="text-sm font-semibold uppercase tracking-wide text-white-main">
@@ -31,13 +31,13 @@ const Hero = () => {
               {featuredPost?.title}
             </h1>
             <p className="mt-4 text-lg text-white-200">{featuredPost.desc}</p>
-            <Button className="mt-6 inline-block bg-yellow-main hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 text-white font-medium py-2 px-4 rounded-lg transition duration-150 ease-in-out text-white-200">
+            <Button className="mt-6 inline-block bg-yellow-main hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 text-white font-medium py-2 px-4 rounded-lg transition duration-150 ease-in-out text-white-200">
               Read More
             </Button>
           </div>
           <div className="flex justify-center">
             <Image
-              src="/aiimage.png"
+              src={featuredPost.image}
               alt=""
               width={608}
               height={576}
