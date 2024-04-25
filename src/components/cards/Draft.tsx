@@ -24,7 +24,7 @@ export function Widget() {
 
         <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
           Google has been investing in AI for many years and bringing its
-          benefits to individuals, businesses and communities. Whether it’s
+          benefits to individuals, businesses and communities. Whether it&apos;s
           publishing state-of-the-art research, building helpful products or
           developing tools and resources that enable others, we're committed to
           making AI accessible to everyone.
