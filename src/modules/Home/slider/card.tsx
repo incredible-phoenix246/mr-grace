@@ -47,10 +47,10 @@ const Card = () => {
               </Button>
             </div>
             <div className="p-5">
-              <h3 className="md:text-2xl text-sm font-bold mb-3 text-center">
+              <h3 className="md:text-2xl text-sm font-bold mb-3 text-center md:text-start">
                 {featuredPost.title}
               </h3>
-              <p className="text-zinc-700 text-sm mb-4">{featuredPost.desc}</p>
+              <p className="text-zinc-700 text-sm md:text-base mb-4">{featuredPost.desc}</p>
             </div>
             <div className="px-5">
               <Button
