@@ -15,11 +15,9 @@ export default function AdminLayout({
       <Suspense fallback={<SkeletonNavbar />}>
         <Header />
       </Suspense>
-      <main className="px-4 sm:px-8 xl:px-16 2xl:px-24">
-        {children}
-        <Sub />
-        <Footer />
-      </main>
+      {children}
+      <Sub />
+      <Footer />
     </>
   );
 }

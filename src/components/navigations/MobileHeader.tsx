@@ -2,7 +2,6 @@
 
 import { useStateCtx } from "@/context/StateCtx";
 import { cn } from "@/utils";
-import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -77,7 +76,7 @@ export const MobileHeader = () => {
                 href={
                   link.link === "home"
                     ? "/?path=home"
-                    : `${link.link}?path=${link.link}`
+                    : `/${link.link}?path=${link.link}`
                 }
                 key={link.id}
                 onClick={() => {

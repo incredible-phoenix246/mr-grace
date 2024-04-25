@@ -10,3 +10,10 @@ export type SocialsProps = {
   label: string;
   icon?: Icon;
 };
+
+export type PostProps = {
+  id?: number;
+  title: string;
+  desc: string;
+  image: string;
+};

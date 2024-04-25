@@ -4,7 +4,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { cn } from "@/utils";
 import { Menu, Search } from "lucide-react";
 import { Button } from "@ui/button";
-import { useSearchParams, usePathname } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useStateCtx } from "@/context/StateCtx";
 import useWindowHeight from "@/hooks/useDimension";
 import Image from "next/image";
@@ -17,7 +17,6 @@ export const Header = () => {
   const { setShowMobileMenu } = useStateCtx();
   const searchParams = useSearchParams().get("path");
   const scrollHeight = useWindowHeight();
-  const pathname = usePathname();
 
   const [isActive, setIsActive] = useState("");
   useEffect(() => {
@@ -55,7 +54,7 @@ export const Header = () => {
               href={
                 link.link === "home"
                   ? "/?path=home"
-                  : `${link.link}?path=${link.link}`
+                  : `/${link.link}?path=${link.link}`
               }
               key={link.id}
               onClick={() => {
