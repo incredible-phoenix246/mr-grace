@@ -26,7 +26,7 @@ export function Widget() {
           Google has been investing in AI for many years and bringing its
           benefits to individuals, businesses and communities. Whether it&apos;s
           publishing state-of-the-art research, building helpful products or
-          developing tools and resources that enable others, we're committed to
+          developing tools and resources that enable others, we&apos;re committed to
           making AI accessible to everyone.
         </p>
 
@@ -63,9 +63,9 @@ function Widget2() {
           </h2>
           <p className="text-zinc-700 mt-2">
             Google has been investing in AI for many years and bringing its
-            benefits to individuals, businesses and communities. Whether it's
+            benefits to individuals, businesses and communities. Whether it&apos;s
             publishing state-of-the-art research, building helpful products or
-            developing tools and resources that enable others, we're committed
+            developing tools and resources that enable others, we&apos;re committed
             to making AI accessible to everyone.
           </p>
           <div className="mt-4">
