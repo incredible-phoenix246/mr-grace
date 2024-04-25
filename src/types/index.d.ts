@@ -13,7 +13,10 @@ export type SocialsProps = {
 
 export type PostProps = {
   id?: number;
+  cart?: string;
+  date?: string;
   title: string;
   desc: string;
   image: string;
+  readcount?: number;
 };

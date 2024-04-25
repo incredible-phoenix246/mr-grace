@@ -34,10 +34,10 @@ const Card = () => {
           <div className="max-w-[920px] h-[300px] mx-auto bg-white rounded-br-lg rounded-t-lg shadow-md overflow-hidden absolute bottom-0 right-0 bg-white-main">
             <div className="p-4 flex gap-x-3 items-center w-full h-fit">
               <div className="text-white text-xs uppercase font-bold text-black-main">
-                Development
+                {featuredPost.cart}
               </div>
               <div className="text-white text-sm text-black-200">
-                16 March 2023
+                {featuredPost.date}
               </div>
               <Button
                 variant="ghost"
@@ -50,7 +50,9 @@ const Card = () => {
               <h3 className="md:text-2xl text-sm font-bold mb-3 text-center md:text-start">
                 {featuredPost.title}
               </h3>
-              <p className="text-zinc-700 text-sm md:text-base mb-4">{featuredPost.desc}</p>
+              <p className="text-zinc-700 text-sm md:text-base mb-4">
+                {featuredPost.desc}
+              </p>
             </div>
             <div className="px-5">
               <Button
