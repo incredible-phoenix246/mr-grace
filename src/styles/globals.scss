@@ -41,3 +41,27 @@ input[type="number"]::-webkit-outer-spin-button {
 .hover-bg:hover .check {
   color: white;
 }
+
+.container-input {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 30vw;
+}
+
+.container-label {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  color: #f2e000;
+  background-color: wheat;
+  padding: 0 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.container-input :focus-within .container-label {
+  top: 0;
+  font-size: 12px;
+}
