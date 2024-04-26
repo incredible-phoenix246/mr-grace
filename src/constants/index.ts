@@ -10,8 +10,9 @@ import { BsTwitterX } from "react-icons/bs";
 
 export const NAV_LINKS: NavbarLinkProps[] = [
   { id: 1, link: "home", label: "home" },
-  { id: 2, link: "about", label: " About" },
-  { id: 3, link: "blog", label: " Blog" },
+  { id: 2, link: "about", label: "About" },
+  { id: 3, link: "blog", label: "Blog" },
+  { id: 4, link: "contact", label: "Contact" },
 ];
 
 export const Social_Links: SocialsProps[] = [

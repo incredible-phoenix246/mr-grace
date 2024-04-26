@@ -63,7 +63,7 @@ const AboutMid = () => {
           : " opacity-0 translate-y-36"
       )}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-12">
           <h2 className="text-3xl font-bold">How We Work</h2>
           <p className="mt-4 text-xl">I will show you how our team works</p>
@@ -72,7 +72,7 @@ const AboutMid = () => {
             articles.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12 self-center">
           {AboutContent.map((content) => (
             <AboutCard key={content.id} {...content} />
           ))}
