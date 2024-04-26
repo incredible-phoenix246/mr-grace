@@ -1,4 +1,9 @@
-import { NavbarLinkProps, SocialsProps, PostProps } from "@/types";
+import {
+  NavbarLinkProps,
+  SocialsProps,
+  PostProps,
+  AboutCardProps,
+} from "@/types";
 import { type Icon, Facebook, Instagram } from "iconsax-react";
 import { Linkedin } from "lucide-react";
 import { BsTwitterX } from "react-icons/bs";
@@ -106,5 +111,23 @@ export const Post: PostProps[] = [
     date: "16 March 2023",
     cart: "Development",
     readcount: 30,
+  },
+];
+
+export const AboutContent: AboutCardProps[] = [
+  {
+    id: 1,
+    title: "Brainstorming",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere alias rem voluptatibus aliquam harum quo eligendi saepe! Dolorem praesentium quas sed odio, inventore impedit debitis vero quisquam? Iusto, minima suscipit? Expedita laboriosam at praesentium accusantium inventore cupiditate ducimus perspiciatis asperiores!",
+  },
+  {
+    id: 2,
+    title: "News Publishing",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere alias rem voluptatibus aliquam harum quo eligendi saepe! Dolorem praesentium quas sed odio, inventore impedit debitis vero quisquam? Iusto, minima suscipit? Expedita laboriosam at praesentium accusantium inventore cupiditate ducimus perspiciatis asperiores!",
+  },
+  {
+    id: 3,
+    title: "Analysing",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere alias rem voluptatibus aliquam harum quo eligendi saepe! Dolorem praesentium quas sed odio, inventore impedit debitis vero quisquam? Iusto, minima suscipit? Expedita laboriosam at praesentium accusantium inventore cupiditate ducimus perspiciatis asperiores!",
   },
 ];

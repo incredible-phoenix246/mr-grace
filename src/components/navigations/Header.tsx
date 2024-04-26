@@ -47,7 +47,7 @@ export const Header = () => {
       >
         <Image src="/logo.png" alt="logo" width={155} height={55} />
       </Link>
-      <div className="hidden lg:flex gap-x-3 xl:gap-x-5 [&>Button:last-child]:border [&>Button:last-child]::px-4 [&>Button:last-child]::py-2 [&>Button:last-child]::rounded-md [&>Button:last-child]::font-medium items-center">
+      <div className="hidden lg:flex gap-x-3 xl:gap-x-5 [&>Button:last-child]:border [&>Button:last-child]:px-4 [&>Button:last-child]::py-2 [&>Button:last-child]::rounded-md [&>Button:last-child]::font-medium items-center">
         <div className="flex items-center gap-x-5 lg:gap-x-7 2xl:gap-x-10 w-full justify-center max-w-[50%] 2xl:max-w-[40%]">
           {NAV_LINKS.map((link) => (
             <Link

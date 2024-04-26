@@ -20,3 +20,9 @@ export type PostProps = {
   image: string;
   readcount?: number;
 };
+
+export type AboutCardProps = {
+  id: number;
+  title: string;
+  desc: string;
+};
