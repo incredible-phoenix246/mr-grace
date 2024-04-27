@@ -1,7 +1,13 @@
 import React from "react";
+import { BlogHero, PostSection } from "@/modules/blog";
 
 const page = () => {
-  return <div>page</div>;
+  return (
+    <>
+      <BlogHero />
+      <PostSection />
+    </>
+  );
 };
 
 export default page;
