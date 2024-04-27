@@ -72,10 +72,12 @@ const AboutMid = () => {
             articles.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12 self-center">
-          {AboutContent.map((content) => (
-            <AboutCard key={content.id} {...content} />
-          ))}
+        <div className="items-center justify-center flex w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12 self-center">
+            {AboutContent.map((content) => (
+              <AboutCard key={content.id} {...content} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -87,7 +89,7 @@ export { AboutHero, AboutMid };
 function AboutCard({ id, title, desc }: AboutCardProps) {
   const formattedId = id < 10 ? `0${id}` : id;
   return (
-    <div className="relative hover:bg-yellow-main text-black-main bg-white-200 p-6 max-w-sm rounded-lg shadow-lg h-[408px] w-[400px] transition-colors hover-bg">
+    <div className="relative hover:bg-yellow-main text-black-main bg-white-200 p-6 max-w-sm rounded-lg shadow-lg h-[408px] w-[370px] md:w-[400px] transition-colors hover-bg">
       <div className="flex flex-col items-start mb-4">
         <h1 className="text-[72px] font-bold mr-2 transition-colorsn">
           {formattedId}
