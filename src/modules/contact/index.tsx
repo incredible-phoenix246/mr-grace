@@ -69,7 +69,7 @@ const ContactForm = () => {
     <section
       ref={HomePageRef}
       className={cn(
-        "w-full font-poppins bg-white-300 py-16 items-center justify-center relative",
+        "w-full font-poppins bg-white-300 items-center justify-center relative",
         isInView
           ? "opacity-100 translate-y-0 md:delay-300 duration-500"
           : " opacity-0 translate-y-36"
