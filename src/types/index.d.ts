@@ -19,6 +19,7 @@ export type PostProps = {
   desc: string;
   image: string;
   readcount?: number;
+  comment?: Comment[];
 };
 
 export type AboutCardProps = {
@@ -26,7 +27,6 @@ export type AboutCardProps = {
   title: string;
   desc: string;
 };
-
 
 interface Post {
   id: string;
@@ -45,8 +45,13 @@ interface Post {
 interface Comment {
   id: string;
   createdAt: Date;
-  updatedAt: Date;
+  updatedAt?: Date;
   author?: string;
   comment: string;
-  postId: string;
+  postId?: string;
 }
+
+
+type DefaultAuthor<T> = T & { author: Exclude<T["author"], ""> | "anonymous" };
+
+type Comment = DefaultAuthor<CommentBase>;

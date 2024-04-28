@@ -1,7 +1,11 @@
+"use client";
+
 import { PostProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@ui/button";
+import { encryptString } from "@/utils";
+import { usePathname } from "next/navigation";
 
 export default function PostCard({
   title,
@@ -11,6 +15,7 @@ export default function PostCard({
   id,
   cart,
 }: PostProps) {
+  const encryptTitle = encryptString(title);
   return (
     <div className="max-w-[400px] max-h-[630px] mx-auto overflow-hidden bg-white rounded-xl shadow-lg">
       <Image
@@ -26,10 +31,12 @@ export default function PostCard({
         <h1 className="block mt-2 text-xl font-semibold text-zinc-800">
           {title}
         </h1>
-        <p className="mt-2 text-sm text-zinc-600 ">{desc}</p>
+        <p className="mt-2 text-sm text-zinc-600 line-clamp-5">{desc}</p>
         <div className="mt-4">
           <Button asChild className="text-white-main">
-            <Link href="#">Read More</Link>
+            <Link href={`/blog/content?id=${id}&post_title=${encryptTitle}`}>
+              Read More
+            </Link>
           </Button>
         </div>
       </div>

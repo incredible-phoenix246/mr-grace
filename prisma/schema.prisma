@@ -20,6 +20,7 @@ model post {
   views     Int
   draft     Boolean
   quote     String?
+  cart      String?   @default("art")
 
   @@map("Posts")
 }
