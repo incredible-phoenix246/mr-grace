@@ -124,13 +124,13 @@ const BlogComment = ({ id }: { id?: string }) => {
   if (!BlogPost?.comment) {
     return;
   }
-  const [comments, setComments] = useState<Comment>({
-    id: "",
-    author: "",
-    comment: "",
-    createdAt: new Date(),
-    postId: id,
-  });
+  // const [comments, setComments] = useState<Comment>({
+  //   id: "",
+  //   author: "",
+  //   comment: "",
+  //   createdAt: new Date(),
+  //   postId: id,
+  // });
 
   const handleComment = (e: FormEvent) => {
     e.preventDefault();
@@ -198,19 +198,19 @@ const BlogComment = ({ id }: { id?: string }) => {
             >
               <input
                 type="text"
-                value={comments.author}
+                // value={comments.author}
                 name="author"
-                onChange={(e) =>
-                  setComments({ ...comments, [e.target.name]: e.target.value })
-                }
+                // onChange={(e) =>
+                //   setComments({ ...comments, [e.target.name]: e.target.value })
+                // }
                 placeholder="enter your name"
                 className="w-full  rounded-xl border border-[#e1e1e1] px-4 py-2 h-16 outline-none focus-visible:border-yellow-main transition-all duration-300"
               />
               <textarea
-                onChange={(e) =>
-                  setComments({ ...comments, [e.target.name]: e.target.value })
-                }
-                value={comments.comment}
+                // onChange={(e) =>
+                //   setComments({ ...comments, [e.target.name]: e.target.value })
+                // }
+                // value={comments.comment}
                 name="comment"
                 id="comment"
                 placeholder="Leave a comment"
@@ -218,8 +218,8 @@ const BlogComment = ({ id }: { id?: string }) => {
               />
               <div className="flex w-full justify-end">
                 <button
-                  disabled={!(comments.comment.length > 2)}
-                  aria-disabled={!(comments.comment.length > 2)}
+                  // disabled={!(comments.comment.length > 2)}
+                  // aria-disabled={!(comments.comment.length > 2)}
                   tabIndex={0}
                   aria-label="comment"
                   type="submit"
