@@ -12,15 +12,16 @@ model post {
   src       String //image or video url
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  title     String
-  desc      String
-  links     String?
-  others    String?
+  title     String // post tittle
+  desc      String // description
+  others    String? // other relevant details
   comment   comment[]
-  views     Int
-  draft     Boolean
+  views     Int? // how many people viewed it
+  draft     Boolean? // wethered is draft or not {published or pending}
+  isvideo   Boolean?
   quote     String?
-  cart      String?   @default("art")
+  cart      String?   @default("art") // category
+  links     links[] // sharable link
 
   @@map("Posts")
 }
@@ -35,4 +36,17 @@ model comment {
   postId    String   @db.ObjectId
 
   @@map("Comments")
+}
+
+model subscribers {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  email String
+}
+
+model links {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  platform String
+  url      String
+  post     post   @relation(fields: [postId], references: [id])
+  postId   String @db.ObjectId
 }

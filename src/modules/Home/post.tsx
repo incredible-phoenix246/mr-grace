@@ -80,7 +80,7 @@ function IndexCard({ title, date, image, desc, id, cart }: PostProps) {
             <div className="text-white text-sm text-black-main/90">{date}</div>
           </div>
           <h2 className="text-xl font-bold mt-2">{title}</h2>
-          <p className="text-zinc-300 mt-4">{desc}</p>
+          <p className="text-zinc-300 mt-4 line-clamp-4">{desc}</p>
         </div>
         <Button className="text-white-main px-4 py-2 mt-4 rounded-lg transition duration-300">
           Read More

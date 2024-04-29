@@ -30,7 +30,7 @@ const Toolbar = ({ editor }: Props) => {
   return (
     <div
       className="px-4 py-3 rounded-tl-md rounded-tr-md flex justify-between items-start
-    gap-5 w-full flex-wrap border border-gray-700"
+    gap-5 w-full flex-wrap border border-yellow-main"
     >
       <div className="flex justify-start items-center gap-5 w-full lg:w-10/12 flex-wrap ">
         <button
@@ -191,7 +191,7 @@ const Tiptap = ({ onChange, content }: any) => {
     editorProps: {
       attributes: {
         class:
-          "flex flex-col px-4 py-3 justify-start border-b border-r border-l border-gray-700 text-black-main items-start w-full gap-3 font-medium text-[16px] pt-4 rounded-bl-md rounded-br-md outline-none",
+          "flex flex-col px-4 py-3 justify-start border-b border-r border-l border-yellow-main text-black-main items-start w-full gap-3 font-medium text-[16px] pt-4 rounded-bl-md rounded-br-md outline-none",
       },
     },
     onUpdate: ({ editor }) => {
@@ -200,7 +200,7 @@ const Tiptap = ({ onChange, content }: any) => {
   });
 
   return (
-    <div className="w-full px-4">
+    <div className="w-full">
       <Toolbar editor={editor} />
       <EditorContent style={{ whiteSpace: "pre-line" }} editor={editor} />
     </div>

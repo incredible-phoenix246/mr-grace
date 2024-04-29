@@ -27,10 +27,12 @@ const Hero = () => {
             <div className="text-sm font-semibold uppercase tracking-wide text-white-main">
               Featured Post
             </div>
-            <h1 className="mt-2 text-4xl font-extrabold leading-tight ">
+            <h1 className="mt-2 text-4xl font-extrabold leading-tight">
               {featuredPost?.title}
             </h1>
-            <p className="mt-4 text-lg text-white-200">{featuredPost.desc}</p>
+            <p className="mt-4 text-lg text-white-200 line-clamp-6">
+              {featuredPost.desc}
+            </p>
             <Button className="mt-6 inline-block bg-yellow-main hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 text-white font-medium py-2 px-4 rounded-lg transition duration-150 ease-in-out text-white-200">
               Read More
             </Button>

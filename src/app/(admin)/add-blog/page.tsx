@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { CreatePostForm } from "@/modules/blog/createBlog/form";
 
 const page = () => {
   return (
-    <div>page</div>
-  )
-}
+    <>
+      <CreatePostForm />
+    </>
+  );
+};
 
-export default page
+export default page;
