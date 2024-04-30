@@ -12,30 +12,11 @@ interface BlogContent {
   src: string;
   others?: any;
   cart: string;
-  links: Links;
+  links?: Links[];
   draft: boolean;
   isvideo: boolean;
   quote?: string;
 }
-
-// model post {
-//   id        String    @id @default(auto()) @map("_id") @db.ObjectId
-//   src       String //image or video url
-//   createdAt DateTime  @default(now())
-//   updatedAt DateTime  @updatedAt
-//   title     String // post tittle
-//   desc      String // description
-//   others    String? // other relevant details
-//   comment   comment[]
-//   views     Int? // how many people viewed it
-//   draft     Boolean? // wethered is draft or not {published or pending}
-//   isvideo   Boolean?
-//   quote     String?
-//   cart      String?   @default("art") // category
-//   links     links[] // sharable link
-
-//   @@map("Posts")
-// }
 
 export async function POST(req: Request) {
   try {
@@ -50,6 +31,36 @@ export async function POST(req: Request) {
       isvideo,
       quote,
     }: BlogContent = await req.json();
+    const post = await prisma.post.create({
+      data: {
+        title,
+        desc,
+        src,
+        others,
+        cart,
+        draft,
+        isvideo,
+        quote,
+      },
+    });
+
+    if (links && links.length > 0) {
+      const createLinks = links.map(async (link) => {
+        await prisma.links.create({
+          data: {
+            ...link,
+            postId: post.id,
+          },
+        });
+      });
+
+      await Promise.all(createLinks);
+    }
+
+    return NextResponse.json({
+      status: 200,
+      message: "Post created successfully",
+    });
   } catch (e: any) {
     console.log(e);
     return NextResponse.json({
