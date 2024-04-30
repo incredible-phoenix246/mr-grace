@@ -10,9 +10,12 @@ interface BlogContent {
   title: string;
   desc: string;
   src: string;
-  others: any;
+  others?: any;
   cart: string;
   links: Links;
+  draft: boolean;
+  isvideo: boolean;
+  quote?: string;
 }
 
 // model post {
@@ -36,7 +39,17 @@ interface BlogContent {
 
 export async function POST(req: Request) {
   try {
-    const {} = await req.json();
+    const {
+      title,
+      desc,
+      src,
+      others,
+      cart,
+      links,
+      draft,
+      isvideo,
+      quote,
+    }: BlogContent = await req.json();
   } catch (e: any) {
     console.log(e);
     return NextResponse.json({
