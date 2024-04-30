@@ -1,11 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { cn } from "@/utils";
 import useInView from "@/hooks/useInView";
 import { Call } from "iconsax-react";
 import { Mail, Pentagon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@ui/use-toast";
+import { contact } from "@prisma/client";
+
+interface body {
+  status: number;
+  message: string;
+  data: contact;
+}
 
 const ContactHero = () => {
   const HomePageRef = React.useRef<HTMLDivElement>(null);
@@ -65,6 +73,58 @@ const ContactHero = () => {
 const ContactForm = () => {
   const HomePageRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(HomePageRef);
+  const { toast } = useToast();
+  const [Status, setStatus] = useState("idle");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      setStatus("loading");
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const body: body = await res.json();
+      if (body.status === 200) {
+        toast({
+          title: "Thank you!",
+          description:
+            "Thank you for contacting us we'll get back to you as soon as possible",
+        });
+        setStatus("success");
+      }
+      if (body.status === 400) {
+        setStatus("error");
+        toast({
+          title: "All feilds are required.",
+          description: body.message,
+        });
+      }
+    } catch (e: any) {
+      setStatus("error");
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+      });
+    }
+  };
   return (
     <section
       ref={HomePageRef}
@@ -90,12 +150,14 @@ const ContactForm = () => {
 
       <div className="flex items-center justify-center w-full -mt-[100px]">
         <div className="self-center items-center bg-white-300 justify-center p-8 rounded-lg shadow-lg w-[80%] md:w-[60%]">
-          <form action="">
+          <form action="" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 gap-y-9">
               <div className="relative">
                 <input
                   id="contactname"
-                  name="contactname"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   type="text"
                   placeholder="John Doe"
                   className="peer h-12 w-full bg-transparent border-b-2 text-base border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-yellow-main"
@@ -111,6 +173,8 @@ const ContactForm = () => {
                 <input
                   id="email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   type="email"
                   placeholder="email@example.com"
                   className="peer h-12 w-full bg-transparent border-b-2 text-base border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-yellow-main"
@@ -125,8 +189,10 @@ const ContactForm = () => {
               <div className="relative">
                 <input
                   id="phone"
+                  type="tel"
                   name="phone"
-                  type="text"
+                  value={formData.phone}
+                  onChange={handleChange}
                   placeholder="(234) 123 456 789"
                   className="peer h-12 w-full bg-transparent border-b-2 text-base border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-yellow-main"
                 />
@@ -141,6 +207,8 @@ const ContactForm = () => {
                 <input
                   id="subject"
                   name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   type="text"
                   placeholder="subject"
                   className="peer h-12 w-full bg-transparent border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-yellow-main"
@@ -163,7 +231,10 @@ const ContactForm = () => {
     [&:not(:placeholder-shown)]:pb-2
     autofill:pt-6
     autofill:pb-2"
-                placeholder="This is a textarea placeholder"
+                placeholder="Enter your Message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
               />
               <label
                 htmlFor="hs-floating-textarea-underline"
@@ -175,14 +246,20 @@ const ContactForm = () => {
       peer-[:not(:placeholder-shown)]:-translate-y-1.5
       peer-[:not(:placeholder-shown)]:text-gray-500"
               >
-                Comment
+                Message
               </label>
             </div>
             <Button
-              type="button"
+              type="submit"
               className="items-center justify-center flex text-white-100 w-full text-center py-3"
             >
-              Send Message
+              {Status === "loading"
+                ? "Please wait"
+                : Status === "success"
+                ? "Success"
+                : Status === "error"
+                ? "Try again"
+                : "Send Message"}
             </Button>
           </form>
         </div>

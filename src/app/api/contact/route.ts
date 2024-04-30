@@ -16,6 +16,13 @@ export async function POST(req: Request) {
     const { name, email, phone, subject, message }: ContactContent =
       await req.json();
 
+    if (!name || !email || !phone || !subject || !message) {
+      return NextResponse.json({
+        status: 400,
+        message: "All fields are required",
+      });
+    }
+
     const contact = await prisma.contact.create({
       data: {
         name,
