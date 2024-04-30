@@ -41,6 +41,8 @@ model comment {
 model subscribers {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   email String @unique
+
+  @@map("subscribers")
 }
 
 model links {
@@ -49,4 +51,15 @@ model links {
   url      String
   post     post   @relation(fields: [postId], references: [id])
   postId   String @db.ObjectId
+}
+
+model contact {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  email   String
+  phone   String
+  subject String
+  message String
+
+  @@map("Contacts")
 }
