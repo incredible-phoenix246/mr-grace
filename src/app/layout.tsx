@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "../styles/globals.scss";
 import { montserrat, poppins } from "@/fonts";
 import StateContextProvider from "@/context/StateCtx";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Mr Grace",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <StateContextProvider>
         <body className={`${montserrat.className} ${poppins.variable}`}>
           {children}
+          <Toaster />
         </body>
       </StateContextProvider>
     </html>
