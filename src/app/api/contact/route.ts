@@ -1,5 +1,3 @@
-// createContact.ts
-
 import { NextResponse } from "next/server";
 import { prisma } from "@/utils/prisma";
 
@@ -32,6 +30,29 @@ export async function POST(req: Request) {
         message,
       },
     });
+
+    if (contact) {
+      const response = await fetch(
+        "https://mail-service-1omd.onrender.com/api/mrgrace/sub",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: contact.email,
+            name: contact.name,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        return NextResponse.json({
+          status: 402,
+          message: "Something went wrong",
+        });
+      }
+    }
 
     return NextResponse.json({
       status: 200,
