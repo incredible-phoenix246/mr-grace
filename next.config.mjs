@@ -2,8 +2,9 @@
 const nextConfig = {
     images: {
         remotePatterns: [
-            { hostname: 'lh3.googleusercontent.com' },
-            { hostname: 'ui-avatars.com' },
+            { hostname: 'drive.google.com' },
+            { hostname: 'res.cloudinary.com', },
+            { hostname: "ui-avatars.com" },
         ]
     },
 };

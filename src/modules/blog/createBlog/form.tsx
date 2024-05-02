@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { CldUploadButton, CldUploadButtonProps } from "next-cloudinary";
+import { CldUploadButton } from "next-cloudinary";
 import { Tiptap } from "@ui/texteditor";
 import { Button } from "@ui/button";
 import { Uploadresult } from "@/types";
-import { post } from "@prisma/client";
 import Image from "next/image";
 import { cn } from "@/utils";
 import { X } from "lucide-react";
@@ -29,14 +28,16 @@ export type UploadResult = {
   event: "success";
 };
 
-interface Post {
+interface BlogContent {
   title: string;
   desc: string;
-  isvideo: boolean;
   src: string;
+  others?: any;
   cart: string;
-  links: Link;
-  isdraft: boolean;
+  links?: Link[];
+  draft: boolean;
+  isvideo: boolean;
+  quote?: string;
 }
 
 interface Link {
@@ -45,17 +46,20 @@ interface Link {
 }
 
 const CreatePostForm = () => {
-  const [postData, setPostdata] = useState<Post>({
+  const [postData, setPostdata] = useState<BlogContent>({
     title: "",
     desc: "",
     isvideo: false,
     src: "",
     cart: "",
-    isdraft: false,
-    links: {
-      platform: "",
-      url: "",
-    },
+    draft: false,
+    links: [
+      {
+        platform: "",
+        url: "",
+      },
+    ],
+    others: "",
   });
   const scrollRef = React.useRef<HTMLDivElement | null>(null);
   const [result, setResult] = useState<Uploadresult | null>(null);
@@ -70,7 +74,8 @@ const CreatePostForm = () => {
     e.preventDefault();
   };
 
-  // resource_type;
+  console.log(postData);
+
   return (
     <section className="flex flex-col w-full">
       <h3 className="text-lg md:text-2xl font-medium  text-black-main ">
@@ -83,18 +88,20 @@ const CreatePostForm = () => {
         >
           <div
             ref={scrollRef}
-            className="flex w-[300px] h-[300px] max-md:w-full max-md:justify-center "
+            className="flex w-[400px] h-[400px] max-md:w-full max-md:justify-center "
           >
             {postData?.src ? (
               <div className="flex flex-col gap-y-2 h-full w-full relative overflow-hidden rounded-lg">
                 {postData?.isvideo ? (
-                  <iframe
-                    className="w-full h-full object-cover rounded-lg transition-all duration-300"
-                    src={postData.src}
-                    title="Video Player"
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                  />
+                  <>
+                    <iframe
+                      className="w-full h-full object-cover rounded-lg transition-all duration-300"
+                      src={postData.src}
+                      title="Video Player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture full"
+                      allowFullScreen
+                    />
+                  </>
                 ) : (
                   <Image
                     width={300}
@@ -105,7 +112,7 @@ const CreatePostForm = () => {
                   />
                 )}
 
-                <span className="absolute bottom-1 left-0 bg-gradient-to-r from-white via-white/50 to-white/5 px-2 w-full text-left font-medium dark:text-gray-200">
+                <span className="absolute bottom-1 left-0 bg-gradient-to-r from-white-main via-white-main/50 to-white-main/5 px-2 w-full text-left font-medium">
                   {result?.info.original_filename!}
                 </span>
                 <button
@@ -113,7 +120,7 @@ const CreatePostForm = () => {
                   tabIndex={0}
                   aria-label="Remove image"
                   onClick={() => setPostdata({ ...postData, src: "" })}
-                  className="text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-main-light rounded-full bg-white/60 backdrop-blur-sm absolute top-1 right-1 w-8 h-8 flex items-center justify-center hover:text-red-500 hover:bg-white/80 hover:brightness-150 transition-all duration-700 hover:duration-200"
+                  className="text-black-main focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-main rounded-full bg-white-main/60 backdrop-blur-sm absolute top-1 right-1 w-8 h-8 flex items-center justify-center hover:text-red-500 hover:bg-white-main/80 hover:brightness-150 transition-all duration-700 hover:duration-200"
                   title="Remove image"
                 >
                   <X size={18} />
@@ -196,6 +203,7 @@ const CreatePostForm = () => {
                 }
               />
             </div>
+
             <div className="flex w-full justify-center sm:justify-end items-center gap-x-2 sm:gap-x-3 md:gap-x-6 py-6 max-sm:gap-x-5">
               <button
                 type="button"

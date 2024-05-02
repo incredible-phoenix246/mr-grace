@@ -28,7 +28,7 @@ const config: Config = {
         yellow: {
           main: "#E7C900",
           dark: "#C4A600",
-          light: "#F2E000",
+          light: "#b49d00",
         },
         destructive: "#f81d28",
       },

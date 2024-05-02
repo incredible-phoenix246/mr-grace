@@ -4,6 +4,13 @@ export type NavbarLinkProps = {
   label: string;
 };
 
+export type SidebarProps = {
+  id?: number;
+  label: string;
+  icon: Icon;
+  link: string;
+};
+
 export type SocialsProps = {
   id?: number;
   link: string;

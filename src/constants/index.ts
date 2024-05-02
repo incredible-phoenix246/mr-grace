@@ -3,8 +3,18 @@ import {
   SocialsProps,
   PostProps,
   AboutCardProps,
+  SidebarProps,
 } from "@/types";
-import { type Icon, Facebook, Instagram } from "iconsax-react";
+import {
+  type Icon,
+  AddSquare,
+  Category,
+  Facebook,
+  Instagram,
+  People,
+  ShoppingCart,
+  BookSaved,
+} from "iconsax-react";
 import { Linkedin } from "lucide-react";
 import { BsTwitterX } from "react-icons/bs";
 
@@ -500,5 +510,32 @@ export const AboutContent: AboutCardProps[] = [
     id: 3,
     title: "Analysing",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere alias rem voluptatibus aliquam harum quo eligendi saepe! Dolorem praesentium quas sed odio, inventore impedit debitis vero quisquam? Iusto, minima suscipit? Expedita laboriosam at praesentium accusantium inventore cupiditate ducimus perspiciatis asperiores!",
+  },
+];
+
+export const SIDEBARLINKS: SidebarProps[] = [
+  {
+    id: 1,
+    label: "Dashboard",
+    icon: Category,
+    link: "dashboard",
+  },
+  {
+    id: 2,
+    label: "Add Content",
+    icon: AddSquare,
+    link: "add-blog",
+  },
+  {
+    id: 3,
+    label: "Subscribers",
+    icon: People,
+    link: "subscribers",
+  },
+  {
+    id: 4,
+    label: "Draft",
+    icon: BookSaved,
+    link: "draft",
   },
 ];

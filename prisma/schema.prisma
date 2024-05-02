@@ -63,3 +63,9 @@ model contact {
 
   @@map("Contacts")
 }
+
+model admin {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  password String
+}
