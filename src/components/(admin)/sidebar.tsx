@@ -45,7 +45,7 @@ const SideBar = () => {
             className={cn(
               "flex items-center gap-x-3 py-2 px-3 h-[52px] text-[#fdfffd] font-medium text-base transition-colors duration-300 cursor-pointer ",
               activeLink === link.link
-                ? "bg-yellow-light   text-white rounded outline-none active"
+                ? "bg-white-main   text-yellow-main rounded outline-none active"
                 : "hover:bg-black-main/10  focus-visible:bg-black-main/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-light"
             )}
             onClick={() => setActiveLink(link.link)}

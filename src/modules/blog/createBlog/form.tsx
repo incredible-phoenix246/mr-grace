@@ -8,25 +8,7 @@ import { Uploadresult } from "@/types";
 import Image from "next/image";
 import { cn } from "@/utils";
 import { X } from "lucide-react";
-
-export interface UploadedAssetData {
-  public_id: string;
-  width: number;
-  height: number;
-  id: string;
-  info: Record<string, unknown>;
-  original_filename: string;
-  url: string;
-  [key: string]: unknown;
-}
-
-export type UploadResult = {
-  info: {
-    public_id: string;
-    original_filename: string;
-  };
-  event: "success";
-};
+import { useToast } from "@/components/ui/use-toast";
 
 interface BlogContent {
   title: string;
@@ -45,7 +27,13 @@ interface Link {
   url: string;
 }
 
+interface body {
+  status: number;
+  message: string;
+}
+
 const CreatePostForm = () => {
+  const [draft, setDraft] = useState(false);
   const [postData, setPostdata] = useState<BlogContent>({
     title: "",
     desc: "",
@@ -63,29 +51,76 @@ const CreatePostForm = () => {
   });
   const scrollRef = React.useRef<HTMLDivElement | null>(null);
   const [result, setResult] = useState<Uploadresult | null>(null);
+  const [status, setStatus] = useState("idle");
   const handleContentChange = (reason: any) => {
     setPostdata({
       ...postData,
       desc: reason,
     });
   };
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const Createpost = async (isDraft: boolean) => {
+    if (isDraft) {
+      postData.draft = true;
+    }
+    try {
+      setStatus(isDraft ? "saving" : "loading");
+      const res = await fetch("/api/createblog", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      });
+
+      const body: body = await res.json();
+      if (body.status === 200) {
+        setPostdata({
+          title: "",
+          desc: "",
+          isvideo: false,
+          src: "",
+          cart: "",
+          draft: false,
+          links: [
+            {
+              platform: "",
+              url: "",
+            },
+          ],
+          others: "",
+        });
+        toast({
+          title: isDraft
+            ? "Draft Saved successfully"
+            : "Content Created successfully",
+          description: isDraft
+            ? "Draft has been saved"
+            : "New Content has been added",
+        });
+        setStatus(isDraft ? "saved" : "success");
+      }
+      if (body.status === 400) {
+        setStatus("error");
+        toast({
+          title: "All feilds are required.",
+          description: body.message,
+        });
+      }
+    } catch (e: any) {
+      setStatus("error");
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+      });
+    }
   };
 
-  console.log(postData);
-
   return (
-    <section className="flex flex-col w-full">
-      <h3 className="text-lg md:text-2xl font-medium  text-black-main ">
-        Create New Post
-      </h3>
+    <section className="flex flex-col w-full h-full">
       <section className="w-full h-full pt-2 sm:pt-4">
-        <form
-          onSubmit={handleSubmit}
-          className="flex w-full flex-col md:flex-row gap-4 gap-y-8 md:gap-8  py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start"
-        >
+        <form className="flex w-full flex-col md:flex-row gap-4 gap-y-8 md:gap-8  py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start overflow-y-auto overflow-x-hidden">
           <div
             ref={scrollRef}
             className="flex w-[400px] h-[400px] max-md:w-full max-md:justify-center "
@@ -207,6 +242,7 @@ const CreatePostForm = () => {
             <div className="flex w-full justify-center sm:justify-end items-center gap-x-2 sm:gap-x-3 md:gap-x-6 py-6 max-sm:gap-x-5">
               <button
                 type="button"
+                onClick={() => Createpost(true)}
                 tabIndex={0}
                 // disabled={isDisabled}
                 aria-label="Remove"
@@ -214,18 +250,31 @@ const CreatePostForm = () => {
                   "rounded-lg border border-yellow-main text-yellow-main min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-yellow-main"
                 )}
               >
-                Save as Draft
+                {status === "saving"
+                  ? "Saving..."
+                  : status === "saved"
+                  ? "Saved"
+                  : status === "error"
+                  ? "Try Again"
+                  : "Save as Draft"}
               </button>
               <button
-                type="submit"
+                type="button"
                 tabIndex={0}
+                onClick={() => Createpost(false)}
                 // disabled={isDisabled}
                 aria-label="Remove"
                 className={cn(
                   "rounded-lg bg-yellow-main text-white-main min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-yellow-main"
                 )}
               >
-                Publish
+                {status === "loading"
+                  ? "Please Wait"
+                  : status === "success"
+                  ? "Created"
+                  : status === "error"
+                  ? "Try Again"
+                  : "Publish"}
               </button>
             </div>
           </div>
