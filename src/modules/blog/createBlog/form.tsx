@@ -118,11 +118,11 @@ const CreatePostForm = () => {
   };
 
   return (
-    <section className="flex flex-col w-full h-full">
+    <section className="flex flex-col w-full h-screen">
       <section className="w-full h-full pt-2 sm:pt-4">
-        <form className="flex w-full flex-col md:flex-row gap-4 gap-y-8 md:gap-8  py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start overflow-y-auto overflow-x-hidden">
+        <form className="flex w-full flex-col md:flex-row gap-4 gap-y-8 md:gap-8  py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start overflow-y-auto overflow-x-hidden sidebar-scroll">
           <div
-            ref={scrollRef}
+         
             className="flex w-[400px] h-[400px] max-md:w-full max-md:justify-center "
           >
             {postData?.src ? (

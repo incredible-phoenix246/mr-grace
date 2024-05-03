@@ -191,7 +191,7 @@ const Tiptap = ({ onChange, content }: any) => {
     editorProps: {
       attributes: {
         class:
-          "flex flex-col px-4 py-3 justify-start border-b border-r border-l border-yellow-main text-black-main items-start w-full gap-3 font-medium text-[16px] pt-4 rounded-bl-md rounded-br-md outline-none",
+          "flex flex-col px-4 py-3 justify-start border-b border-r border-l border-yellow-main text-black-main items-start w-full gap-3 font-medium text-[16px] pt-4 rounded-bl-md rounded-br-md outline-none max-h-[280px] overflow-y-auto overflow-x-hidden",
       },
     },
     onUpdate: ({ editor }) => {
