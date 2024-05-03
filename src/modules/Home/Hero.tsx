@@ -18,19 +18,16 @@ const Hero = () => {
   const baseurl = process.env.NEXT_PUBLIC_BASEURL;
   const { isLoading, data, error } = useFetch(`${baseurl}/api/blog`);
 
-  let encryptTitle;
-
   useEffect(() => {
     if (data) {
       const filteredPosts =
         data.post?.filter((post: post) => !post.draft) || [];
       const firstNonDraftPost = filteredPosts[0];
       setFeaturedPost(firstNonDraftPost);
-      encryptTitle = encryptString(firstNonDraftPost.title);
     }
   }, [data]);
 
-  console.log(featuredPost);
+  const encryptTitle = encryptString(featuredPost?.title ?? "");
 
   return (
     <section
