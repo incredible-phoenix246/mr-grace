@@ -10,27 +10,7 @@ import { post } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-interface Post {
-  id: string;
-  title: string;
-  desc: string;
-  isvideo?: boolean | null;
-  src: string;
-  cart: string | null;
-  createdAt: Date;
-  currIdx?: number;
-}
-
-const Card = ({
-  id,
-  title,
-  desc,
-  isvideo,
-  src,
-  cart,
-  createdAt,
-  currIdx = 0,
-}: Post) => {
+const Card = ({ id, title, desc, isvideo, src, cart, createdAt }: post) => {
   const SliderRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(SliderRef);
   const encryptTitle = encryptString(title);
@@ -45,13 +25,13 @@ const Card = ({
   const formattedDate = createdAt ? formatDate(new Date(createdAt)) : "";
   return (
     <section
-      // ref={SliderRef}
+      ref={SliderRef}
       className={cn(
         "py-12 relative px-4 sm:px-8 xl:px-16 2xl:px-24",
-        currIdx + 1 === id ? "opacity-100" : "opacity-0"
-        // isInView
-        //   ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
-        //   : " opacity-0 translate-y-36"
+
+        isInView
+          ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
+          : " opacity-0 translate-y-36"
       )}
     >
       <div className="max-w-[1232px] mx-auto overflow-hidden bg-white rounded-lg shadow-lg relative">
