@@ -200,7 +200,7 @@ const BlogComment = ({ id }: { id?: string }) => {
     const fetchPostDetails = async () => {
       try {
         setStatus("isloading");
-        const response = await fetch(`${baseurl}/api/blog/${id}`);
+        const response = await fetch(`${baseurl}/api/comment/${id}`);
         const data = await response.json();
         setStatus("successloaded");
         setPostsComment(data.post.comment);
