@@ -3,18 +3,18 @@
 import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { cn, generateId, commentsTime } from "@/utils";
 import useInView from "@/hooks/useInView";
-import { Call } from "iconsax-react";
-import { Mail, Pentagon } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import PostCard from "@/components/cards/Draft";
 import { Post } from "@/constants";
 import { PostProps, Comment } from "@/types";
 import Image from "next/image";
 import { DirectRight } from "iconsax-react";
+import { post } from "@prisma/client";
+import { useFetch } from "@/hooks/useFetch";
 
 const BlogHero = () => {
   const HomePageRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(HomePageRef);
+
   return (
     <section
       ref={HomePageRef}
@@ -47,6 +47,18 @@ const BlogHero = () => {
 const PostSection = () => {
   const PostRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(PostRef);
+
+  const [posts, setPosts] = useState<post[]>();
+  const baseurl = process.env.NEXT_PUBLIC_BASEURL;
+  const { isLoading, data, error } = useFetch(`${baseurl}/api/blog`);
+
+  useEffect(() => {
+    if (data) {
+      const filteredPosts =
+        data.post?.filter((post: post) => !post.draft) || [];
+      setPosts(filteredPosts);
+    }
+  }, [data]);
   return (
     <section
       ref={PostRef}
@@ -59,7 +71,7 @@ const PostSection = () => {
     >
       <div className="flex items-center justify-center self-center max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
-          {Post.map((post) => (
+          {posts?.map((post) => (
             <PostCard key={post.id} {...post} />
           ))}
         </div>
