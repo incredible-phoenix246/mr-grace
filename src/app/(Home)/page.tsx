@@ -7,7 +7,6 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <HomeSlider/>
       <GridPost />
       <PopularPost />
     </>
