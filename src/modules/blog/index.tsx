@@ -1,7 +1,7 @@
 "use client";
 
 import React, { FormEvent, useEffect, useRef, useState } from "react";
-import { cn, commentsTime } from "@/utils";
+import { cn, timeAgo } from "@/utils";
 import useInView from "@/hooks/useInView";
 import PostCard from "@/components/cards/Draft";
 import Image from "next/image";
@@ -10,6 +10,7 @@ import { post, comment } from "@prisma/client";
 import { useFetch } from "@/hooks/useFetch";
 import { PostSkel } from "./skel";
 import { useToast } from "@ui/use-toast";
+import { HeroSkel } from "../Home/skelton";
 
 interface body {
   status: number;
@@ -69,18 +70,30 @@ const PostSection = () => {
     <section
       ref={PostRef}
       className={cn(
-        "mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white-300 flex items-center w-full justify-center",
+        "mx-auto px-4 sm:px-6 lg:px-8 py-12 flex items-center w-full justify-center",
+        isLoading ? "bg-white-main" : "bg-white-300",
         isInView
           ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
           : " opacity-0 translate-y-36"
       )}
     >
       <div className="flex items-center justify-center self-center max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
-          {posts?.map((post) => (
-            <PostCard key={post.id} {...post} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
+            <HeroSkel />
+            <HeroSkel />
+            <HeroSkel />
+            <HeroSkel />
+            <HeroSkel />
+            <HeroSkel />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
+            {posts?.map((post) => (
+              <PostCard key={post.id} {...post} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -200,7 +213,7 @@ const BlogComment = ({ id }: { id?: string }) => {
     const fetchPostDetails = async () => {
       try {
         setStatus("isloading");
-        const response = await fetch(`${baseurl}/api/comment/${id}`);
+        const response = await fetch(`${baseurl}/api/blog/${id}`);
         const data = await response.json();
         setStatus("successloaded");
         setPostsComment(data.post.comment);
@@ -218,7 +231,7 @@ const BlogComment = ({ id }: { id?: string }) => {
 
     try {
       setStatus("loading");
-      const res = await fetch(`/api/blog/${id}`, {
+      const res = await fetch(`/api/comment/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -291,7 +304,7 @@ const BlogComment = ({ id }: { id?: string }) => {
                         </p>
 
                         <p className="text-xs text-header italic">
-                          {comment.createdAt?.toLocaleString()}
+                          {timeAgo(comment.createdAt.toString())}
                         </p>
                       </div>
                       <p className="text-sm ">{comment.comment}</p>
