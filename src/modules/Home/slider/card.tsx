@@ -1,31 +1,64 @@
+// @ts-nocheck
+
 "use client";
 
 import React from "react";
 import Image from "next/image";
 import useInView from "@/hooks/useInView";
-import { cn } from "@/utils";
-import { Post } from "@/constants";
+import { cn, encryptString } from "@/utils";
+import { post } from "@prisma/client";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-const Card = () => {
+interface Post {
+  id: string;
+  title: string;
+  desc: string;
+  isvideo?: boolean | null;
+  src: string;
+  cart: string | null;
+  createdAt: Date;
+  currIdx?: number;
+}
+
+const Card = ({
+  id,
+  title,
+  desc,
+  isvideo,
+  src,
+  cart,
+  createdAt,
+  currIdx = 0,
+}: Post) => {
   const SliderRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(SliderRef);
-  const featuredPost = Post[1];
+  const encryptTitle = encryptString(title);
+
+  const formatDate = (date: Date): string => {
+    const day = date.getDate();
+    const month = date.toLocaleString("default", { month: "short" });
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
+
+  const formattedDate = createdAt ? formatDate(new Date(createdAt)) : "";
   return (
     <section
-      ref={SliderRef}
+      // ref={SliderRef}
       className={cn(
         "py-12 relative px-4 sm:px-8 xl:px-16 2xl:px-24",
-        isInView
-          ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
-          : " opacity-0 translate-y-36"
+        currIdx + 1 === id ? "opacity-100" : "opacity-0"
+        // isInView
+        //   ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
+        //   : " opacity-0 translate-y-36"
       )}
     >
       <div className="max-w-[1232px] mx-auto overflow-hidden bg-white rounded-lg shadow-lg relative">
-        {featuredPost.isvideo ? (
+        {isvideo ? (
           <iframe
             className="w-full h-[576px] object-cover object-center"
-            src={featuredPost.image}
+            src={src}
             title="Video Player"
             allow="autoplay; encrypted-media"
             allowFullScreen
@@ -33,7 +66,7 @@ const Card = () => {
         ) : (
           <Image
             className="w-full h-[576px] object-cover object-center"
-            src={featuredPost.image}
+            src={src}
             alt="VR Gaming"
             width={1232}
             height={576}
@@ -44,10 +77,10 @@ const Card = () => {
           <div className="max-w-[920px] h-[300px] mx-auto bg-white rounded-br-lg rounded-t-lg shadow-md overflow-hidden absolute bottom-0 right-0 bg-white-main">
             <div className="p-4 flex gap-x-3 items-center w-full h-fit">
               <div className="text-white text-xs uppercase font-bold text-black-main">
-                {featuredPost.cart}
+                {cart}
               </div>
               <div className="text-white text-sm text-black-200">
-                {featuredPost.date}
+                {formattedDate}
               </div>
               <Button
                 variant="ghost"
@@ -58,18 +91,26 @@ const Card = () => {
             </div>
             <div className="p-5">
               <h3 className="md:text-2xl text-sm font-bold mb-3 text-center md:text-start">
-                {featuredPost.title}
+                {title}
               </h3>
-              <p className="text-zinc-700 text-sm md:text-base mb-4 line-clamp-3">
-                {featuredPost.desc}
-              </p>
+
+              <div
+                className="ProseMirror whitespace-pre-line mt-2 text-zinc-700 text-sm md:text-base mb-4 line-clamp-3"
+                style={{ whiteSpace: "pre-line" }}
+                dangerouslySetInnerHTML={{ __html: desc }}
+              />
             </div>
             <div className="px-5">
               <Button
+                asChild
                 variant="outline"
                 className="absolute border border-yellow-400 text-yellow-400  py-2 px-4 rounded hover:text-white transition-colors"
               >
-                Read More
+                <Link
+                  href={`/blog/content?id=${id}&post_title=${encryptTitle}`}
+                >
+                  Read More
+                </Link>
               </Button>
             </div>
           </div>
