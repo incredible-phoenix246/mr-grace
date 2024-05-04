@@ -32,6 +32,7 @@ export const Footer = () => {
             <Link
               href={link.link}
               key={link.id}
+              target="_blank"
               className={cn(
                 "bg-yellow-main rounded-full  flex justify-center text-sm md:text-base relative font-medium w-[28px] h-[28px] md:w-[40px] md:h-[40px] text-[16px] items-center text-white-main"
               )}

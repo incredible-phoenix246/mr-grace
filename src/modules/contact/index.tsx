@@ -44,7 +44,7 @@ const ContactHero = () => {
               </span>
             </div>
             <h2 className="font-semibold">Office</h2>
-            <p className="text-zinc-600">Victoria Street, London, UK</p>
+            <p className="text-zinc-600">Kagini (Abuja), Nigeria</p>
           </div>
           <div className="bg-white-200 rounded-lg shadow-lg p-6 w-64">
             <div className="flex justify-center mb-4">
@@ -53,7 +53,7 @@ const ContactHero = () => {
               </span>
             </div>
             <h2 className="font-semibold">Email</h2>
-            <p className="text-zinc-600">hello@zarrin.com</p>
+            <p className="text-zinc-600">mrgrace856@gmail.com</p>
           </div>
           <div className="bg-white-200 rounded-lg shadow-lg p-6 w-64">
             <div className="flex justify-center mb-4">
@@ -62,7 +62,7 @@ const ContactHero = () => {
               </span>
             </div>
             <h2 className="font-semibold">Phone</h2>
-            <p className="text-zinc-600">(001) 2342 3451</p>
+            <p className="text-zinc-600">(+234) 815 397 9602</p>
           </div>
         </div>
       </div>

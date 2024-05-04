@@ -15,8 +15,8 @@ import {
   ShoppingCart,
   BookSaved,
 } from "iconsax-react";
-import { Linkedin } from "lucide-react";
 import { BsTwitterX } from "react-icons/bs";
+import { FaTiktok } from "react-icons/fa";
 
 export const NAV_LINKS: NavbarLinkProps[] = [
   { id: 1, link: "home", label: "home" },
@@ -26,10 +26,25 @@ export const NAV_LINKS: NavbarLinkProps[] = [
 ];
 
 export const Social_Links: SocialsProps[] = [
-  { id: 1, link: "", label: "Facebook", icon: Facebook },
-  { id: 2, link: "", label: "Linkedin", icon: Linkedin },
+  {
+    id: 1,
+    link: "https://www.facebook.com/profile.php?id=100067040846836&mibextid=AEUHqQ",
+    label: "Facebook",
+    icon: Facebook,
+  },
+  {
+    id: 2,
+    link: "https://www.tiktok.com/@mr.grace37",
+    label: "Tiktok",
+    icon: FaTiktok,
+  },
   { id: 3, link: "", label: "Twitter", icon: BsTwitterX },
-  { id: 4, link: "", label: "Instagram", icon: Instagram },
+  {
+    id: 4,
+    link: "https://www.instagram.com/mrgrace856?igsh=cGtta3pnd2xjbzRk&utm_source=qr",
+    label: "Instagram",
+    icon: Instagram,
+  },
 ];
 
 export const Post: PostProps[] = [

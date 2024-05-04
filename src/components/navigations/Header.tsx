@@ -81,7 +81,7 @@ export const Header = () => {
           asChild
           className="text-white-main w-[180px] h-[56px] text-[16px] text-center"
         >
-          <Link href="/?path=home">Contact Us</Link>
+          <Link href="/contact?path=contact">Contact Us</Link>
         </Button>
       </div>
       <div
