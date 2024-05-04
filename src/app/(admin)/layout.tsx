@@ -1,6 +1,7 @@
 import React from "react";
 import SideBar from "@/components/(admin)/sidebar";
 import NavBar from "@/components/(admin)/Nav";
+import Admin from "@/modules/login/admin";
 
 export default function AdminLayout({
   children,
@@ -8,7 +9,7 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <Admin>
       <SideBar />
       <section className="w-full md:pl-[96px] min-[1140px]:pl-[270px]">
         <NavBar />
@@ -16,6 +17,6 @@ export default function AdminLayout({
           {children}
         </div>
       </section>
-    </>
+    </Admin>
   );
 }
