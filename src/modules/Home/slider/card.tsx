@@ -55,8 +55,8 @@ const Card = ({ id, title, desc, isvideo, src, cart, createdAt }: post) => {
 
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="max-w-[920px] h-[300px] mx-auto bg-white rounded-br-lg rounded-t-lg shadow-md overflow-hidden absolute bottom-0 right-0 bg-white-main">
-            <div className="p-4 flex flex-col w-full">
-              <div className="flex gap-x-3 items-center w-full h-fit justify-between">
+            <div className="p-4 flex flex-col w-full md:hidden">
+              <div className="flex gap-x-3 items-center w-full h-fit justify-between ">
                 <div className="text-white text-xs uppercase font-bold text-black-main">
                   {cart}
                 </div>
@@ -73,6 +73,14 @@ const Card = ({ id, title, desc, isvideo, src, cart, createdAt }: post) => {
                 </Button>
               </div>
               <div className="text-white text-sm text-black-200">
+                {formattedDate}
+              </div>
+            </div>
+            <div className="p-4 md:flex gap-x-3 items-center w-full h-fit hidden">
+              <div className="text-white text-xs uppercase font-bold text-black-main">
+                {cart}
+              </div>
+              <div className="text-white text-sm text-black-main/90">
                 {formattedDate}
               </div>
             </div>
