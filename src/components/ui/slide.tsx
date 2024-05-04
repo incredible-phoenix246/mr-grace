@@ -5,7 +5,6 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
-import "./style.scss";
 
 import { LuChevronLeftCircle, LuChevronRightCircle } from "react-icons/lu";
 

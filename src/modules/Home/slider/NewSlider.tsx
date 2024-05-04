@@ -35,7 +35,7 @@ export const HomeSlider = () => {
     <div
       ref={slideRef}
       className={cn(
-        "w-full flex flex-col justify-center items-center h-full relative p-8 embla overflow-hidden py-4 lg:py-8  xl:py-12 pb-8",
+        "w-full flex flex-col justify-center items-center h-full relative md:p-8 embla overflow-hidden py-4 lg:py-8  xl:py-12 pb-8",
         isInView
           ? "opacity-100 translate-y-0 delay-300 duration-1000"
           : " opacity-0 translate-y-36"
@@ -49,23 +49,23 @@ export const HomeSlider = () => {
           }}
           plugins={[
             Autoplay({
-              delay: 2000,
+              delay: 5000,
             }),
           ]}
-          className="w-full max-w-sm"
+          className="w-full"
         >
-          <CarouselContent className="embla__container flex touch-pan-y w-full ">
+          <CarouselContent className=" flex touch-pan-y w-full ">
             {posts?.map((slide) => (
               <CarouselItem key={slide.id}>
                 <Card {...slide} />
               </CarouselItem>
             ))}
           </CarouselContent>
+          <div className="w-full justify-center  flex mt-4 lg:mt-8 gap-x-4">
+            <PrevButton />
+            <NextButton />
+          </div>
         </Carousel>
-      </div>
-      <div className="w-full justify-center  flex mt-4 lg:mt-8 gap-x-4">
-        <PrevButton />
-        <NextButton />
       </div>
     </div>
   );

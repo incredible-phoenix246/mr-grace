@@ -102,7 +102,7 @@ function IndexCard({ title, createdAt, src, desc, id, cart, isvideo }: post) {
         {isvideo ? (
           <>
             <iframe
-              className="w-full min-h-[300px] object-cover rounded-lg transition-all duration-300"
+              className="w-full min-h-[300px] h-full object-cover rounded-lg transition-all duration-300"
               src={src}
               title="Video Player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture full"
@@ -119,7 +119,7 @@ function IndexCard({ title, createdAt, src, desc, id, cart, isvideo }: post) {
           />
         )}
       </div>
-      <div className="md:w-1/2 flex flex-col justify-between p-4">
+      <div className="md:w-1/2 flex flex-col justify-between p-4 bg-white-main">
         <div>
           <div className="p-4 flex gap-x-3 items-center w-full h-fit">
             <div className="text-white text-xs uppercase font-bold text-black-main">
