@@ -109,6 +109,13 @@ const ContactForm = () => {
             "Thank you for contacting us we'll get back to you as soon as possible",
         });
         setStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
       }
       if (body.status === 400) {
         setStatus("error");
